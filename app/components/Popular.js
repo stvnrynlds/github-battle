@@ -1,29 +1,81 @@
 var React = require('react');
 var PropTypes = require('prop-types');
-var api = require('./utils/api');
+var api = require('../utils/api');
+
+function RepoGrid (props) {
+  console.log(props);
+  return (
+    <ul className='popular-list'>
+      {props.repos.map(function (repo, index) {
+        return (
+        <li key={repo.name} className='popular-item'>
+          <ul className='space-list-items'>
+            <li>
+              <div className='orbit-wrapper'>
+                <div className='popular-rank'>{index + 1}</div>
+                <img
+                  className='avatar'
+                  src={repo.owner.avatar_url}
+                  alt={'Avatar for ' + repo.owner.login}
+                />
+              </div>
+             </li>
+             <li><a href={repo.html_url}>{repo.name}</a></li>
+             <li>@{repo.owner.login}</li>
+             <li>&#9733; {repo.stargazers_count}</li>
+          </ul>
+        </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+RepoGrid.propTypes = {
+  repos: PropTypes.array.isRequired,
+}
 
 class Popular extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedLanguage: 'All',
+      repos: null
     }
     this.updateLanguage = this.updateLanguage.bind(this);
   }
+  componentDidMount () {
+    this.updateLanguage(this.state.selectedLanguage);
+  }
   updateLanguage(lang) {
-    console.log(lang);
     this.setState(() => {
       return { 
-        selectedLanguage: lang
+        selectedLanguage: lang,
+        repos: null
       }
     });
+
+    api.fetchPopularRepos(lang)
+      .then((repos) => {
+        this.setState(function () {
+          return {
+            repos: repos
+          }
+        })
+      });
   }
   render() {
     return (
+      <div>
       <SelectLanguage
         selectedLanguage={this.state.selectedLanguage}
         onSelect={this.updateLanguage} 
       />
+      {!this.state.repos
+        ? <p>LOADING</p>
+        : <RepoGrid repos={this.state.repos} />
+      }
+      </div>
     )
   }
 }

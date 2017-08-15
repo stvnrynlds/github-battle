@@ -17,6 +17,14 @@ ul {
   justify-content: center;
 }
 
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
 .languages li {
   margin: 10px;
   font-weight: bold;
@@ -26,3 +34,47 @@ ul {
 .languages li.is-selected {
   color: #ff4d4d;
 }
+
+.popular-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.popular-item {
+  margin: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.popular-rank {
+  position: absolute;
+  background: #232323;
+  color: #fff;
+  top: 5px;
+  right: 5px;
+  font-size: 13px;
+  line-height: 30px;
+  width: 30px;
+  border-radius: 60px;
+}
+
+.avatar {
+  box-shadow: 0 0 0 5px #232323;
+  background: #232323;
+}
+
+.avatar:hover {
+  box-shadow: 0 0 0 5px #ff4d4d;
+  background: #ff4d4d;
+}
+
+.space-list-item {
+  margin-bottom: 7px;
+}
+
+.avatar {
+  width: 150px;
+  border-radius: 50%;
+}
+

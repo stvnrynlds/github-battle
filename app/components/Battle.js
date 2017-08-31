@@ -1,14 +1,15 @@
 var React = require('react');
 var PropTypes = require('prop-types');
+var Link = require('react-router-dom').Link;
 
 class Battle extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      playerOneName: null,
+      playerOneName: '',
+      playerTwoName: '',
       playerOneImage: null,
-      playerTwoName: null,
       playerTwoImage: null
     }
 
@@ -28,7 +29,7 @@ class Battle extends React.Component {
   handleReset(id) {
     this.setState(function() {
       var newState = {};
-      newState[id + 'Name'] = null;
+      newState[id + 'Name'] = '';
       newState[id + 'Image'] = null;
       return newState;
     })
@@ -36,6 +37,7 @@ class Battle extends React.Component {
   }
 
   render() {
+    var match = this.props.match;
     var playerOneName = this.state.playerOneName;
     var playerTwoName = this.state.playerTwoName;
     var playerOneImage = this.state.playerOneImage;
@@ -73,7 +75,20 @@ class Battle extends React.Component {
             />
           }
 
+
         </div>
+
+          {playerOneImage && playerTwoImage &&
+            <Link
+              className='button'
+              to={{
+                pathname: match.url + '/results',
+                search: '?playerOneName=' + playerOneName + '&playerTwoName=' + playerTwoName
+              }}>
+              Battle
+            </Link>
+          }
+
       </div>
     )
   }

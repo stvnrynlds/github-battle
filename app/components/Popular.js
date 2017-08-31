@@ -3,22 +3,19 @@ var PropTypes = require('prop-types');
 var api = require('../utils/api');
 
 function RepoGrid (props) {
-  console.log(props);
   return (
     <ul className='popular-list'>
       {props.repos.map(function (repo, index) {
         return (
         <li key={repo.name} className='popular-item'>
+          <div className='popular-rank'>{index + 1}</div>
           <ul className='space-list-items'>
             <li>
-              <div className='orbit-wrapper'>
-                <div className='popular-rank'>{index + 1}</div>
-                <img
-                  className='avatar'
-                  src={repo.owner.avatar_url}
-                  alt={'Avatar for ' + repo.owner.login}
-                />
-              </div>
+              <img
+                className='avatar'
+                src={repo.owner.avatar_url}
+                alt={'Avatar for ' + repo.owner.login}
+              />
              </li>
              <li><a href={repo.html_url}>{repo.name}</a></li>
              <li>@{repo.owner.login}</li>

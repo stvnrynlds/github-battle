@@ -13,6 +13,7 @@ class Battle extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleSubmit(id, username) {
@@ -23,6 +24,11 @@ class Battle extends React.Component {
       return newState;
     });
   }
+
+  handleReset() {
+    console.log('handleReset fired');
+  }
+
   render() {
     var playerOneName = this.state.playerOneName;
     var playerTwoName = this.state.playerTwoName;
@@ -89,7 +95,7 @@ function PlayerPreview (props) {
 PlayerPreview.propTypes = {
   avatar: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
+  // onReset: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired
 }
 

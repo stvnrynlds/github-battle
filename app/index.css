@@ -7,6 +7,37 @@ body {
   margin: 0 auto;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+}
+
+.column input {
+  border-radius: 3px;
+  margin: 10px 0;
+  border: 1px solid rgba(0,0,0,.43);
+  font-size: 16px;
+  padding: 5px;
+  width: 80%;
+}
+
+.column label {
+  font-size: 30px;
+  font-weight: 200;
+}
+
+
+.header {
+
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
 ul {
   margin: 0;
 }
@@ -78,3 +109,48 @@ li {
   border-radius: 50%;
 }
 
+.nav {
+  display: flex;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.nav li {
+  margin-right: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: #ff4d4d;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  border: 0;
+  padding: 8px 15px;
+  display: block;
+  border-radius: 4px;
+  background: #232323;
+  color: #fff;
+}
+
+.reset {
+  border: none;
+  background: transparent;
+  color: #ff4d4d;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.reset-hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

@@ -91,13 +91,12 @@ li {
 }
 
 .avatar {
-  box-shadow: 0 0 0 5px #232323;
-  background: #232323;
+  box-shadow: 0 0 0 5px #eee;
+  background: #fff;
 }
 
 .avatar:hover {
   box-shadow: 0 0 0 5px #ff4d4d;
-  background: #ff4d4d;
 }
 
 .space-list-item {

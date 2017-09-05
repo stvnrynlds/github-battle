@@ -16,7 +16,7 @@ function getRepos (username) {
 }
 
 function getStarCount (repos) {
-  return repose.data.reduce(function (count, repo) {
+  return repos.data.reduce(function (count, repo) {
     return count + repo.stargazers_count;
   }, 0);
 }
@@ -33,9 +33,9 @@ function handleError (error) {
   return null;
 }
 
-function getUserData () {
+function getUserData (player) {
   return axios.all([
-    getProflie(player), 
+    getProfile(player), 
     getRepos(player)
   ]).then(function(data) {
     var profile = data[0];

@@ -1,11 +1,12 @@
 var axios = require('axios');
 
-var id = "YOUR_CLIENT";
-var sec = "YOUR_SECRET_ID";
-var params = "?client_id=" + id + "&client_secret=" + sec;
+// var id = "YOUR_CLIENT";
+// var sec = "YOUR_SECRET_ID";
+// var params = "?client_id=" + id + "&client_secret=" + sec;
+var params = '?';
 
 function getProfile (username) {
-  return axio.get('https://api.github.com/users/' + username + params)
+  return axios.get('https://api.github.com/users/' + username + params)
     .then(function (user) {
       return user.data;
     });

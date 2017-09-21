@@ -5,16 +5,33 @@ var api = require('../utils/api');
 var Link = require('react-router-dom').Link;
 var PlayerPreview = require('./PlayerPreview');
 
-function Player (props) {
-  var user = props.profile;
+function Profile (props) {
+  var info = props.info;
+  console.log(props.info);
   return (
-    <div>
-    <div className='column'>
-      <img src={props.avatar} alt="" className="avatar"/>
-    </div>
-      <h2>{props.label}: {user.login}</h2>
-      <p></p>
-      <p>Score: {props.score}</p>
+    <PlayerPreview avatar={info.avatar_url} username={info.login}>
+      {info.name && <li>{info.name}</li>}
+      {info.location && <li>{info.location}</li>}
+      {info.company && <li>{info.company}</li>}
+      <li>Followers: {info.followers}</li>
+      <li>Following: {info.following}</li>
+      <li>Public Repos: {info.public_repos}</li>
+      <li>Profile: <a href={info.html_url}>{info.html_url}</a></li>
+      {info.blog && <li><a href={info.blog}>{info.blog}</a></li>}
+    </PlayerPreview>
+  )
+}
+
+Profile.propTypes = {
+  info: PropTypes.object.isRequired,
+}
+
+function Player (props) {
+  return (
+    <div style={{textAlign: 'center'}}>
+      <h1 className='header'>{props.label}</h1>
+      <h3>Score: {props.score}</h3>
+      <Profile info={props.profile} />
     </div>
   );
 }
@@ -23,7 +40,6 @@ Player.propTypes = {
   label: PropTypes.string.isRequired,
   profile: PropTypes.object.isRequired,
   score: PropTypes.number.isRequired
-
 }
 
 class Results extends React.Component {
@@ -67,7 +83,7 @@ class Results extends React.Component {
     var winner = this.state.winner;
     var loser = this.state.loser;
     var loading = this.state.loading;
-    
+
     if (loading === true) {
       return <p>Loading</p>
     }
@@ -93,7 +109,7 @@ class Results extends React.Component {
           score={loser.score}
           profile={loser.profile}
         />
-        
+
       </div>
     )
   }

@@ -11,12 +11,7 @@ function PlayerPreview (props) {
           alt={'Avatar for ' + props.username } />
         <h2 className='username'>@{props.username}</h2>
       </div>
-      <button
-        className='reset'
-        onClick={props.onReset.bind(null, props.id)}
-        >
-        Reset
-      </button>
+      {props.children}
     </div>
   )
 }
@@ -24,8 +19,6 @@ function PlayerPreview (props) {
 PlayerPreview.propTypes = {
   avatar: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired
 }
 
 module.exports = PlayerPreview;
